@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNNIKRISHNAN NAIR // DATA SCIENTIST</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-green: #39ff14;
+            --neon-cyan: #00ffff;
+            --neon-pink: #ff10f0;
+            --neon-orange: #ff6600;
+            --neon-yellow: #ffff00;
+            --dark-bg: #0a0e1a;
+            --screen-bg: #0d1117;
+            --text-primary: #00ff00;
+            --text-secondary: #00ffff;
+            --shadow-glow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'VT323', monospace;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+            cursor: crosshair;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .grid-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+        }
+
+        .crt { position: relative; }
+        .crt::before {
+            content: " "; display: block; position: fixed; top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2; background-size: 100% 2px, 3px 100%; pointer-events: none;
+        }
+        .crt::after {
+            content: " "; display: block; position: fixed; top: 0; left: 0; bottom: 0; right: 0;
+            background: rgba(18, 16, 16, 0.1); opacity: 0; z-index: 2; pointer-events: none;
+            animation: subtleFlicker 4s infinite;
+        }
+
+        @keyframes subtleFlicker {
+            0%, 100% { opacity: 0.03; }
+            50% { opacity: 0.06; }
+        }
+
+        .container {
+            max-width: 1200px; margin: 0 auto; padding: 2rem;
+            position: relative; z-index: 1; flex: 1; width: 100%;
+        }
+
+        .terminal-header {
+            background: var(--screen-bg); border: 3px solid var(--neon-green);
+            border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem;
+            box-shadow: var(--shadow-glow), inset 0 0 20px rgba(0, 255, 0, 0.1);
+            animation: slideDown 1s ease-out; position: relative; overflow: hidden;
+        }
+        .terminal-header::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.2), transparent);
+            animation: scan 3s infinite;
+        }
+        @keyframes scan { 0% { left: -100%; } 100% { left: 100%; } }
+        @keyframes slideDown { from { transform: translateY(-100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        .terminal-line { font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .prompt { color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink); }
+        .blink { animation: blink 1s step-end infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        h1 {
+            font-family: 'Press Start 2P', cursive; font-size: 2.5rem; color: var(--neon-cyan);
+            text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan), 0 0 30px var(--neon-cyan);
+            margin-bottom: 1rem; animation: glitch 3s infinite; line-height: 1.4; text-align: center;
+        }
+        @keyframes glitch {
+            0%, 90%, 100% { transform: translate(0); }
+            92% { transform: translate(-2px, 2px); }
+            94% { transform: translate(2px, -2px); }
+            96% { transform: translate(-2px, -2px); }
+            98% { transform: translate(2px, 2px); }
+        }
+
+        .title-subtitle {
+            font-size: 1.8rem; color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink);
+            font-family: 'Share Tech Mono', monospace; margin-bottom: 1rem; text-align: center;
+        }
+        .achievement-badge {
+            display: inline-block; background: var(--neon-orange); color: var(--dark-bg);
+            padding: 0.5rem 1rem; border-radius: 5px; font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem; margin-top: 1rem; animation: pulse 2s infinite; text-shadow: none;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 10px var(--neon-orange); }
+            50% { transform: scale(1.05); box-shadow: 0 0 20px var(--neon-orange), 0 0 30px var(--neon-orange); }
+        }
+
+        .hero-section {
+            background: var(--screen-bg); border: 2px solid var(--neon-green); border-radius: 8px;
+            padding: 3rem 2rem; margin-bottom: 3rem; box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+            animation: fadeIn 1s ease-out; text-align: center;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .hero-section p { font-size: 1.4rem; line-height: 1.8; color: var(--text-primary); margin-top: 1.5rem; }
+
+        .nav-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem;
+        }
+        .nav-card {
+            background: var(--screen-bg); border: 3px solid var(--neon-cyan); border-radius: 8px;
+            padding: 2rem; text-align: center; text-decoration: none; color: var(--neon-cyan);
+            font-size: 1.5rem; transition: all 0.3s; position: relative; overflow: hidden;
+            cursor: pointer; box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+        }
+        .nav-card::before {
+            content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0;
+            background: var(--neon-cyan); border-radius: 50%; transform: translate(-50%, -50%);
+            transition: width 0.4s, height 0.4s; z-index: -1;
+        }
+        .nav-card:hover::before { width: 500px; height: 500px; }
+        .nav-card:hover { color: var(--dark-bg); box-shadow: 0 0 30px var(--neon-cyan); transform: translateY(-10px); border-color: var(--neon-yellow); }
+        .nav-icon { font-size: 3rem; display: block; margin-bottom: 1rem; }
+        .nav-title { font-family: 'Press Start 2P', cursive; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .nav-description { font-family: 'Share Tech Mono', monospace; font-size: 1.1rem; opacity: 0.8; }
+
+        /* Embedded Contact Section Styles */
+        .contact-section {
+            background: var(--screen-bg); border: 2px solid var(--neon-pink); border-radius: 8px;
+            padding: 2.5rem 2rem; margin-top: 4rem; box-shadow: 0 0 15px rgba(255, 16, 240, 0.2);
+            animation: fadeIn 1s ease-out; position: relative;
+        }
+        
+        .contact-section h2 {
+            font-family: 'Press Start 2P', cursive; font-size: 1.5rem; color: var(--neon-pink);
+            text-shadow: 0 0 10px var(--neon-pink); margin-bottom: 2rem; text-align: center;
+        }
+
+        .contact-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;
+        }
+
+        .contact-link {
+            display: block; background: rgba(255, 16, 240, 0.05); border: 2px solid var(--neon-pink);
+            border-radius: 8px; padding: 1.5rem; text-align: center; text-decoration: none;
+            color: var(--neon-pink); transition: all 0.3s; position: relative; overflow: hidden;
+        }
+
+        .contact-link::before {
+            content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0;
+            background: var(--neon-pink); border-radius: 50%; transform: translate(-50%, -50%);
+            transition: width 0.4s, height 0.4s; z-index: -1;
+        }
+
+        .contact-link:hover::before { width: 400px; height: 400px; }
+        .contact-link:hover { color: var(--dark-bg); box-shadow: 0 0 20px var(--neon-pink); transform: translateY(-5px); }
+
+        .contact-icon { font-size: 2.5rem; display: block; margin-bottom: 0.8rem; }
+        .contact-title { font-family: 'Press Start 2P', cursive; font-size: 1rem; margin-bottom: 0.5rem; }
+        .contact-detail { font-family: 'Share Tech Mono', monospace; font-size: 1rem; word-break: break-all; }
+
+        .footer {
+            text-align: center; padding: 2rem; font-size: 1.2rem; color: var(--neon-green);
+            border-top: 2px solid var(--neon-green); margin-top: 4rem; background: var(--screen-bg);
+            position: relative; z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.5rem; }
+            .title-subtitle { font-size: 1.3rem; }
+            .achievement-badge { font-size: 0.6rem; }
+            .nav-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .contact-section h2 { font-size: 1.2rem; }
+        }
+
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: var(--dark-bg); border: 1px solid var(--neon-green); }
+        ::-webkit-scrollbar-thumb { background: var(--neon-green); box-shadow: 0 0 10px var(--neon-green); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--neon-cyan); box-shadow: 0 0 20px var(--neon-cyan); }
+    </style>
+</head>
+<body class="crt">
+    <div class="grid-bg"></div>
+    
+    <div class="container">
+        <div class="terminal-header">
+            <div class="terminal-line"><span class="prompt">C:\PORTFOLIO></span> 🖥️ LOADING USER PROFILE...</div>
+            <div class="terminal-line"><span class="prompt">C:\PORTFOLIO></span> 🧠 INITIALIZING NEURAL NETWORK...</div>
+            <div class="terminal-line"><span class="prompt">C:\PORTFOLIO></span> STATUS: <span style="color: var(--neon-green);">✓ READY</span> <span class="blink">█</span></div>
+        </div>
+
+        <div class="hero-section">
+            <h1>UNNIKRISHNAN<br>SIVAKUMARAN NAIR</h1>
+            <p class="title-subtitle">🖥️ DATA SCIENTIST // 🔬 ML ENGINEER // 🛡️ RISK SPECIALIST</p>
+            <p>
+                Data Science leader with 8+ years engineering scalable ML solutions for risk, fraud, and financial systems. 
+                Expert in building production-grade models, deploying real-time fraud detection systems, and architecting 
+                data pipelines that process millions of transactions.
+            </p>
+            <div class="achievement-badge">🏆 TOP 100 COACH IN CANADA - TOPMATE</div>
+        </div>
+
+        <div class="nav-grid">
+            <a href="about.html" class="nav-card">
+                <span class="nav-icon">💾</span>
+                <div class="nav-title">ABOUT</div>
+                <div class="nav-description">Learn more about me</div>
+            </a>
+
+            <a href="experience.html" class="nav-card">
+                <span class="nav-icon">💼</span>
+                <div class="nav-title">EXPERIENCE</div>
+                <div class="nav-description">My professional journey</div>
+            </a>
+
+            <a href="experience.html#projects" class="nav-card">
+                <span class="nav-icon">🚀</span>
+                <div class="nav-title">PROJECTS</div>
+                <div class="nav-description">GitHub repositories</div>
+            </a>
+
+            <a href="skills.html" class="nav-card">
+                <span class="nav-icon">⚡</span>
+                <div class="nav-title">SKILLS</div>
+                <div class="nav-description">Technical expertise</div>
+            </a>
+        </div>
+
+        <div class="contact-section">
+            <h2>🌐 // INITIATE_HANDSHAKE</h2>
+            <div class="contact-grid">
+                <a href="mailto:usivakum@uwo.ca" class="contact-link">
+                    <span class="contact-icon">📧</span>
+                    <div class="contact-title">EMAIL</div>
+                    <div class="contact-detail">usivakum@uwo.ca</div>
+                </a>
+
+                <a href="tel:+12269778214" class="contact-link">
+                    <span class="contact-icon">📱</span>
+                    <div class="contact-title">PHONE</div>
+                    <div class="contact-detail">+1 (226) 977-8214</div>
+                </a>
+
+                <a href="https://www.linkedin.com/in/unnisivakumar/" target="_blank" class="contact-link">
+                    <span class="contact-icon">💼</span>
+                    <div class="contact-title">LINKEDIN</div>
+                    <div class="contact-detail">/in/unnisivakumar</div>
+                </a>
+
+                <a href="https://github.com/unnikrishnansivakumar" target="_blank" class="contact-link">
+                    <span class="contact-icon">🐙</span>
+                    <div class="contact-title">GITHUB</div>
+                    <div class="contact-detail">/unnikrishnansivakumar</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>💻 [ SYSTEM STATUS: ONLINE ] • [ LAST UPDATED: 2026 ] • [ VERSION: 1.0.0 ]</p>
+        <p style="margin-top: 1rem;">© 2026 UNNIKRISHNAN SIVAKUMARAN NAIR • ALL RIGHTS RESERVED</p>
+        <p style="margin-top: 0.5rem; font-size: 1rem;">⚡ POWERED BY RETRO COMPUTING AESTHETICS</p>
+    </div>
+</body>
+</html>

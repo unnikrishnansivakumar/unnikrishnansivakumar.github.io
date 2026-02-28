@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experience // UNNIKRISHNAN NAIR</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-green: #39ff14;
+            --neon-cyan: #00ffff;
+            --neon-pink: #ff10f0;
+            --neon-orange: #ff6600;
+            --neon-yellow: #ffff00;
+            --dark-bg: #0a0e1a;
+            --screen-bg: #0d1117;
+            --text-primary: #00ff00;
+            --text-secondary: #00ffff;
+            --shadow-glow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'VT323', monospace;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+            cursor: crosshair;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .grid-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px; animation: gridMove 20s linear infinite;
+            pointer-events: none; z-index: 0;
+        }
+
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+        }
+
+        .crt::before {
+            content: " "; display: block; position: fixed; top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2; background-size: 100% 2px, 3px 100%; pointer-events: none;
+        }
+
+        .crt::after {
+            content: " "; display: block; position: fixed; top: 0; left: 0; bottom: 0; right: 0;
+            background: rgba(18, 16, 16, 0.1); opacity: 0; z-index: 2; pointer-events: none;
+            animation: subtleFlicker 4s infinite;
+        }
+
+        @keyframes subtleFlicker { 0%, 100% { opacity: 0.03; } 50% { opacity: 0.06; } }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; position: relative; z-index: 1; flex: 1; }
+
+        .back-btn {
+            background: transparent; border: 2px solid var(--neon-pink); color: var(--neon-pink);
+            padding: 0.8rem 1.5rem; font-family: 'VT323', monospace; font-size: 1.3rem;
+            cursor: pointer; text-decoration: none; display: inline-block;
+            text-shadow: 0 0 5px var(--neon-pink); position: relative; overflow: hidden;
+            margin-bottom: 2rem; transition: all 0.3s;
+        }
+
+        .back-btn::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: var(--neon-pink); transition: left 0.3s; z-index: -1;
+        }
+
+        .back-btn:hover { color: var(--dark-bg); box-shadow: 0 0 20px var(--neon-pink); text-shadow: none; }
+        .back-btn:hover::before { left: 0; }
+
+        .section {
+            background: var(--screen-bg); border: 2px solid var(--neon-green); border-radius: 8px;
+            padding: 2rem; margin-bottom: 2rem; box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .section h2 {
+            font-family: 'Press Start 2P', cursive; font-size: 1.8rem; color: var(--neon-pink);
+            text-shadow: 0 0 10px var(--neon-pink); margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--neon-pink); padding-bottom: 0.5rem;
+        }
+
+        .experience-item {
+            margin-bottom: 2.5rem; padding-left: 2rem; border-left: 3px solid var(--neon-cyan); position: relative;
+        }
+
+        .experience-item::before {
+            content: '●'; position: absolute; left: -0.7rem; top: 0; color: var(--neon-cyan);
+            font-size: 2rem; animation: glow 2s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px var(--neon-cyan); }
+            50% { text-shadow: 0 0 20px var(--neon-cyan), 0 0 30px var(--neon-cyan); }
+        }
+
+        .job-title { font-size: 1.5rem; color: var(--neon-yellow); text-shadow: 0 0 5px var(--neon-yellow); font-weight: bold; }
+        .company { font-size: 1.3rem; color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink); }
+        .date { font-size: 1.1rem; color: var(--neon-orange); font-style: italic; margin-bottom: 1rem; }
+
+        .experience-item ul { list-style: none; padding-left: 0; }
+        .experience-item li {
+            font-size: 1.3rem; line-height: 1.8; color: var(--text-primary);
+            margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative;
+        }
+        .experience-item li::before { content: '▸'; position: absolute; left: 0; color: var(--neon-orange); font-size: 1.2rem; }
+        .github-link { color: var(--neon-cyan); text-decoration: none; border-bottom: 1px dashed var(--neon-cyan); transition: all 0.3s; }
+        .github-link:hover { color: var(--neon-yellow); border-bottom-color: var(--neon-yellow); text-shadow: 0 0 8px var(--neon-yellow); }
+
+        .footer {
+            text-align: center; padding: 2rem; font-size: 1.2rem; color: var(--neon-green);
+            border-top: 2px solid var(--neon-green); margin-top: 3rem; background: var(--screen-bg); position: relative; z-index: 1;
+        }
+
+        @media (max-width: 768px) { .section h2 { font-size: 1.2rem; } }
+
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: var(--dark-bg); border: 1px solid var(--neon-green); }
+        ::-webkit-scrollbar-thumb { background: var(--neon-green); box-shadow: 0 0 10px var(--neon-green); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--neon-cyan); box-shadow: 0 0 20px var(--neon-cyan); }
+    </style>
+</head>
+<body class="crt">
+    <div class="grid-bg"></div>
+    
+    <div class="container">
+        <a href="index.html" class="back-btn">← BACK TO HOME</a>
+
+        <div class="section">
+            <h2>💼 // WORK_HISTORY.LOG</h2>
+
+            <div class="experience-item">
+                <div class="job-title">SENIOR DATA SCIENTIST - CREDIT RISK</div>
+                <div class="company">Financeit | Toronto, ON</div>
+                <div class="date">Jul 2024 - Present</div>
+                <ul>
+                    <li>Led end-to-end migration from US GAAP to IFRS9, architecting PD, LGD, EAD, and FLI models forecasting expected credit losses across $500M+ loan portfolio with 95% accuracy</li>
+                    <li>Engineered statistical segmentation models improving risk stratification by 30%, reducing regulatory capital requirements by $2M annually</li>
+                    <li>Built real-time executive dashboards surfacing key risk metrics driving monthly credit strategy decisions impacting $50M+ in originations</li>
+                    <li>Architected scalable data pipelines with Fivetran and DBT, automating ETL for 10M+ records daily and reducing processing time by 60%</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-title">SENIOR DATA SCIENTIST - CREDIT RISK ANALYTICS</div>
+                <div class="company">Canadian Tire Bank | Toronto, ON</div>
+                <div class="date">Jun 2023 - Jul 2024</div>
+                <ul>
+                    <li>Spearheaded enterprise-wide stress testing platform processing 50+ macroeconomic scenarios, projecting credit performance with 92% accuracy</li>
+                    <li>Drove strategic decision-making that reduced projected credit losses by 20% ($15M+ savings)</li>
+                    <li>Developed production-grade PD, LGD, and EAD models for $2B+ credit card portfolio, achieving 15% improvement in default prediction accuracy</li>
+                    <li>Led cross-functional team of 5 data scientists, establishing model governance framework reducing deployment time from 3 months to 3 weeks</li>
+                    <li>Partnered with C-suite executives, presenting quarterly risk assessments to board of directors</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-title">DATA SCIENTIST - CREDIT RISK</div>
+                <div class="company">Scotiabank | Toronto, ON</div>
+                <div class="date">Oct 2022 - Jun 2023</div>
+                <ul>
+                    <li>Engineered IFRS9-compliant credit risk models for retail ($5B+) and small business ($1B+) portfolios</li>
+                    <li>Ensured 100% regulatory compliance with OSFI guidelines, passing all audits on first submission</li>
+                    <li>Implemented comprehensive model validation framework with statistical backtesting, reducing model risk incidents by 40%</li>
+                    <li>Deployed models in production with CI/CD pipelines achieving 99.9% uptime</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-title">LEAD DATA ANALYST</div>
+                <div class="company">Ernst & Young (EY) | India & UK</div>
+                <div class="date">Jan 2017 - Apr 2021</div>
+                <ul>
+                    <li>Architected ML-powered sanctions screening system for Fortune 500 bank, reducing false positives by 75% and saving $1.2M annually</li>
+                    <li>Processed 5M+ transactions daily with 99.8% precision</li>
+                    <li>Developed graph-based AML transaction monitoring system using Neo4j, detecting 40% more suspicious activity patterns</li>
+                    <li>Built NLP-powered document analysis tool extracting insights from 10K+ court documents, reducing investigation time by 30%</li>
+                    <li>Led team of 3 data scientists developing conversational AI chatbot, automating 10K+ monthly customer inquiries</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-title">DATA SCIENTIST - ADVANCED ANALYTICS</div>
+                <div class="company">Rio Tinto | Montreal, QC</div>
+                <div class="date">May 2022 - Sep 2022</div>
+                <ul>
+                    <li>Applied causal inference techniques (DAGs, hierarchical regression) identifying key drivers of EBITDA variability across 15 mining sites</li>
+                    <li>Informed $50M+ operational optimization initiatives</li>
+                    <li>Developed internal Python library for model explainability (SHAP, LIME), deployed across 50+ data professionals</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-title">SENIOR DATA ANALYST</div>
+                <div class="company">Fractal Analytics | Bangalore, India</div>
+                <div class="date">Jun 2015 - Dec 2016</div>
+                <ul>
+                    <li>Led automation of business review process for Fortune 500 CPG client</li>
+                    <li>Developed predictive models identifying key drivers of SKU performance, improving marketing ROI by 15%</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section" id="projects">
+            <h2>🚀 // GITHUB_PROJECTS.LOG</h2>
+
+            <div class="experience-item">
+                <div class="job-title"><a href="https://github.com/unnikrishnansivakumar/Mask-Surveillance" target="_blank" class="github-link">MASK SURVEILLANCE SYSTEM 🔗</a></div>
+                <div class="company">Personal Project | Computer Vision & Deep Learning</div>
+                <ul>
+                    <li>Developed a real-time computer vision system leveraging Convolutional Neural Networks (CNNs) to detect and monitor face mask compliance in video surveillance feeds.</li>
+                    <li>Optimized for low-latency video streaming to reliably identify masked vs. unmasked individuals.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-title"><a href="https://github.com/unnikrishnansivakumar/Credit-Risk-Analytics" target="_blank" class="github-link">CREDIT RISK ANALYTICS PIPELINE 🔗</a></div>
+                <div class="company">Personal Project | Predictive Modeling</div>
+                <ul>
+                    <li>Engineered an end-to-end machine learning workflow to evaluate credit risk and forecast the probability of default (PD) for applicants.</li>
+                    <li>Employed advanced statistical classification algorithms (e.g., XGBoost, Random Forest) to maximize predictive accuracy and feature interpretability.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-title"><a href="https://github.com/unnikrishnansivakumar/Crime-Deprivation-Index-Prediction" target="_blank" class="github-link">CRIME DEPRIVATION INDEX PREDICTION 🔗</a></div>
+                <div class="company">Personal Project | Spatial & Statistical Analysis</div>
+                <ul>
+                    <li>Built a predictive statistical model mapping the complex relationship between socio-economic deprivation indices and localized crime rates.</li>
+                    <li>Utilized regression analysis on demographic datasets to uncover key situational vulnerabilities and urban crime drivers.</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <p>💻 [ SYSTEM STATUS: ONLINE ] • [ LAST UPDATED: 2026 ] • [ VERSION: 1.0.0 ]</p>
+        <p style="margin-top: 1rem;">© 2026 UNNIKRISHNAN SIVAKUMARAN NAIR • ALL RIGHTS RESERVED</p>
+        <p style="margin-top: 0.5rem; font-size: 1rem;">⚡ POWERED BY RETRO COMPUTING AESTHETICS</p>
+    </div>
+</body>
+</html>

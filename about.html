@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About // UNNIKRISHNAN NAIR</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-green: #39ff14;
+            --neon-cyan: #00ffff;
+            --neon-pink: #ff10f0;
+            --neon-orange: #ff6600;
+            --neon-yellow: #ffff00;
+            --dark-bg: #0a0e1a;
+            --screen-bg: #0d1117;
+            --text-primary: #00ff00;
+            --text-secondary: #00ffff;
+            --shadow-glow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'VT323', monospace;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+            cursor: crosshair;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+        }
+
+        .crt::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        .crt::after {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: rgba(18, 16, 16, 0.1);
+            opacity: 0;
+            z-index: 2;
+            pointer-events: none;
+            animation: subtleFlicker 4s infinite;
+        }
+
+        @keyframes subtleFlicker {
+            0%, 100% { opacity: 0.03; }
+            50% { opacity: 0.06; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+        }
+
+        .back-btn {
+            background: transparent;
+            border: 2px solid var(--neon-pink);
+            color: var(--neon-pink);
+            padding: 0.8rem 1.5rem;
+            font-family: 'VT323', monospace;
+            font-size: 1.3rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-shadow: 0 0 5px var(--neon-pink);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+        }
+
+        .back-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--neon-pink);
+            transition: left 0.3s;
+            z-index: -1;
+        }
+
+        .back-btn:hover {
+            color: var(--dark-bg);
+            box-shadow: 0 0 20px var(--neon-pink);
+            text-shadow: none;
+        }
+
+        .back-btn:hover::before {
+            left: 0;
+        }
+
+        .section {
+            background: var(--screen-bg);
+            border: 2px solid var(--neon-green);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section h2 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.8rem;
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px var(--neon-pink);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--neon-pink);
+            padding-bottom: 0.5rem;
+        }
+
+        .section p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .section li {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: var(--text-primary);
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .section li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--neon-orange);
+            font-size: 1.2rem;
+        }
+
+        .location-badge {
+            display: inline-block;
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-size: 1.4rem;
+            margin-top: 1rem;
+            text-shadow: 0 0 5px var(--neon-cyan);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 1.2rem;
+            color: var(--neon-green);
+            border-top: 2px solid var(--neon-green);
+            margin-top: 3rem;
+            background: var(--screen-bg);
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .section h2 {
+                font-size: 1.2rem;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+            border: 1px solid var(--neon-green);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--neon-green);
+            box-shadow: 0 0 10px var(--neon-green);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--neon-cyan);
+            box-shadow: 0 0 20px var(--neon-cyan);
+        }
+    </style>
+</head>
+<body class="crt">
+    <div class="grid-bg"></div>
+    
+    <div class="container">
+        <a href="index.html" class="back-btn">← BACK TO HOME</a>
+
+        <div class="section">
+            <h2>💾 // ABOUT_ME.EXE</h2>
+            <p>
+                Seasoned data science leader with expertise in driving business strategy through advanced analytics, 
+                machine learning, and robust statistical modeling. Proven track record of:
+            </p>
+            <ul>
+                <li>💰 Reducing credit losses by 20% through ML-driven strategies ($15M+ savings)</li>
+                <li>🔒 Saving $1.2M+ annually through fraud prevention systems</li>
+                <li>👥 Leading cross-functional teams to deliver regulatory-compliant solutions (IFRS9, OSFI)</li>
+                <li>⚡ Processing millions of transactions with real-time fraud detection</li>
+                <li>🏆 Recognized as Top 100 Coach in Canada on TopMate platform</li>
+            </ul>
+            <p style="margin-top: 1.5rem;">
+                Proficient in Python, SQL, AWS/Azure, and modern MLOps tools. Builder's mindset focused on aligning 
+                data initiatives with executive-level objectives and adapting to evolving market dynamics.
+            </p>
+
+            <div class="location-badge">
+                📍 LOCATION: Toronto, ON, Canada
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎓 // EDUCATION.DB</h2>
+            
+            <h3 style="font-family: 'Share Tech Mono', monospace; font-size: 1.4rem; color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); margin-bottom: 0.8rem;">Master of Data Analytics</h3>
+            <p style="color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink); font-size: 1.3rem;">University of Western Ontario | London, ON</p>
+            <p style="color: var(--neon-orange); font-style: italic; font-size: 1.1rem; margin-bottom: 2rem;">2021 - 2022</p>
+
+            <h3 style="font-family: 'Share Tech Mono', monospace; font-size: 1.4rem; color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); margin-top: 2rem; margin-bottom: 0.8rem;">Bachelor of Technology, Industrial Engineering</h3>
+            <p style="color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink); font-size: 1.3rem;">University of Kerala | India</p>
+            <p style="color: var(--neon-orange); font-style: italic; font-size: 1.1rem;">2011 - 2015</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>💻 [ SYSTEM STATUS: ONLINE ] • [ LAST UPDATED: 2026 ] • [ VERSION: 1.0.0 ]</p>
+        <p style="margin-top: 1rem;">© 2026 UNNIKRISHNAN SIVAKUMARAN NAIR • ALL RIGHTS RESERVED</p>
+        <p style="margin-top: 0.5rem; font-size: 1rem;">⚡ POWERED BY RETRO COMPUTING AESTHETICS</p>
+    </div>
+</body>
+</html>
